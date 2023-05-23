@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  testapp:
+    container_name: testapp
+    hostname: testapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5089:80
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=testdb;User=sa;Password=TestApi1234;TrustServerCertificate=True;MultipleActiveResultSets=True;
+
+
+  testdb:
+    container_name: testdb
+    hostname: testdb
+    build:
+      context: .
+      dockerfile: Dockerfile-db
+    ports:
+      - 1565:1565
+    environment:
+      - SA_PASSWORD=TestApi1234
+      - ACCEPT_EULA=Y

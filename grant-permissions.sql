@@ -1,0 +1,8 @@
+USE TestApi;
+GO
+
+CREATE USER TestApiUser WITH PASSWORD = 'TestApi1234';
+GO
+
+ALTER ROLE [db_owner] ADD MEMBER TestApiUser;
+GO

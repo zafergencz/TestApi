@@ -1,0 +1,16 @@
+FROM mcr.microsoft.com/mssql/server:latest
+
+# Set the environment variables for the MSSQL container
+ENV SA_PASSWORD TestApi1234
+ENV ACCEPT_EULA Y
+ENV MSSQL_PID Express
+
+# Create a new database
+ENV MSSQL_DB_NAME TestApi
+
+# Create a new user
+ENV MSSQL_USER TestApiUser
+ENV MSSQL_PASSWORD TestApi1234
+
+# Grant all permissions to the user on the database
+COPY grant-permissions.sql /docker-entrypoint-initdb.d/
